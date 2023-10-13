@@ -1,12 +1,13 @@
-﻿using System;
+﻿using LivrariaVirtual.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LivrariaVirtual.Domain.Models
+namespace LivrariaVirtual.Business.ViewModels
 {
-    public class Produtos : Entity
+    public class Produtos
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
@@ -17,7 +18,5 @@ namespace LivrariaVirtual.Domain.Models
         public int Quantidade { get; set; }
         public string Imagem { get; set; }
         public string ImagemUrl { get; set; }
-
-
     }
 }
