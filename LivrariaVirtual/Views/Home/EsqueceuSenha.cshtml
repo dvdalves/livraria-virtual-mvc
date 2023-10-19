@@ -1,0 +1,63 @@
+﻿<div class="row mb-2 mr-2">
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Recuperar Senha</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="login-box">
+                <div class="card card-outline card-primary">
+                    <div class="card-header text-center">
+                        <a class="h1"><b>Livraria</b> Virtual</a>
+                    </div>
+                    <div class="card-body">
+                        <p class="login-box-msg">Digite seu endereço para redefinir sua senha.</p>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @if (!String.IsNullOrEmpty(ViewBag.Message))
+                        {
+                            <div class="alert alert-success">
+                                @ViewBag.Message
+                            </div>
+                        }
+
+                        <form asp-action="EsqueceuSenha" method="post">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input class="form-control form-control-lg" placeholder="Digite seu e-mail" type="email" /> <!-- Adicionada a classe 'form-control-lg' -->
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-block">Redefinir senha</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-group mt-3">
+                            <a class="nav-link" asp-controller="Home" asp-action="Login">Voltar para o Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $('#error').fadeIn(); setTimeout(function () { $('#error').fadeOut(); }, 6000);
+</script>
