@@ -1,6 +1,6 @@
 ﻿namespace LivrariaVirtual.Business.Services
 {
-    internal class LivroService
+    public class LivroService
     {
     }
 }
