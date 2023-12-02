@@ -1,5 +1,116 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<LivrariaVirtual.Business.ViewModels.LivroViewModel>
+
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Livros</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Livros" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Livros</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header p-2" style="color:white;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="card-title text-dark mt-2 ml-3">Lista de Livros</h3>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a asp-controller="Livros" asp-action="Create" asp-action="Create" class="btn btn-success btn-sm">Incluir</a>
+                                </div>
+                            </div>
+                            <form method="get">
+                                <div class="d-flex justify-content-center mt-3">
+                                    <div class="row w-100">
+                                        <div class="col-2">
+                                            <input type="date" name="data" class="form-control" />
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="submit" class="btn btn-secondary">Consultar</button>
+                                            <a href="@(Url.Action("Index"))" class="btn btn-secondary">Limpar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Titulo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Genero)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Data)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Autor)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Preco)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Idioma)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var sortedModel = Model.OrderByDescending(item => item.Data);
+                                    }
+                                    @foreach (var item in sortedModel)
+                                    {
+                                        <tr>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Titulo)
+                                            </td>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Genero)
+                                            </td>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Data)
+                                            </td>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Autor)
+                                            </td>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Preco)
+                                            </td>
+                                            <td style="padding:4px; padding-left: 13px; padding-top: 7px;">
+                                                @Html.DisplayFor(modelItem => item.Idioma)
+                                            </td>
+                                            <td style="padding:4px;" class="text-right">
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm"><span class="fa fa-pencil-alt"></span></a>
+                                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><span class="fa fa-folder"></span></a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

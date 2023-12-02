@@ -1,6 +1,12 @@
-﻿namespace LivrariaVirtual.Data.Repository
+﻿using LivrariaVirtual.Data.Data;
+using LivrariaVirtual.Data.Interface;
+using LivrariaVirtual.Domain.Models;
+using System.Data.Entity;
+
+namespace LivrariaVirtual.Data.Repository
 {
-    internal class LivroRepository
+    public class LivroRepository : Repository<Livro>, ILivroRepository
     {
+        public LivroRepository(ApplicationDbContext context) : base(context) { }
     }
 }

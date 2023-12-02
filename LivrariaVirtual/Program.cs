@@ -1,3 +1,4 @@
+using LivrariaVirtual.Configurations;
 using LivrariaVirtual.Data.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureDependencies();
+builder.Services.ConfigureDB(builder.Configuration);
 
 var app = builder.Build();
 

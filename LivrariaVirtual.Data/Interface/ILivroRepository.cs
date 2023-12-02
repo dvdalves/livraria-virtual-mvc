@@ -1,6 +1,8 @@
-﻿namespace LivrariaVirtual.Data.Interface
+﻿using LivrariaVirtual.Domain.Models;
+
+namespace LivrariaVirtual.Data.Interface
 {
-    internal interface ILivroRepository
+    public interface ILivroRepository : IRepository<Livro>
     {
     }
 }
