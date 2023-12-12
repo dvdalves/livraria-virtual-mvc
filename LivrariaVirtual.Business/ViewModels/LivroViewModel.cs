@@ -1,8 +1,7 @@
 ﻿namespace LivrariaVirtual.Business.ViewModels
 {
-    public class LivroViewModel
+    public class LivroViewModel : BaseViewModel
     {
-        public Guid Id { get; set; }
         public string? Titulo { get; set; }
         public string? Genero { get; set; }
         public DateTime? Data { get; set; }

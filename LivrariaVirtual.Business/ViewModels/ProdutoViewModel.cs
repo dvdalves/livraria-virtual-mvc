@@ -1,6 +1,6 @@
 ﻿namespace LivrariaVirtual.Business.ViewModels
 {
-    public class Produtos
+    public class Produtos : BaseViewModel
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
