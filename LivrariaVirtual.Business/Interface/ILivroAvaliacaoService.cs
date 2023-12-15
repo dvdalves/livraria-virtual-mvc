@@ -1,6 +1,6 @@
 ﻿namespace LivrariaVirtual.Business.Interface
 {
-    internal interface IProdutoService
+    public interface ILivroAvaliacaoService
     {
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AdmCrmProver.Business.Service;
 using LivrariaVirtual.Business.Interface;
+using LivrariaVirtual.Business.Services;
 using LivrariaVirtual.Data.Data;
 using LivrariaVirtual.Data.Interface;
 using LivrariaVirtual.Data.Repository;
@@ -13,6 +14,13 @@ namespace LivrariaVirtual.Configurations
         {
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<ILivroService, LivroService>();
+            services.AddScoped<ILivroCategoriaRepository, LivroCategoriaRepository>();
+            services.AddScoped<ILivroCategoriaService, LivroCategoriaService>();
+            services.AddScoped<ILivroAvaliacaoRepository, LivroAvaliacaoRepository>();
+            services.AddScoped<ILivroAvaliacaoService, LivroAvaliacaoService>();
+            services.AddScoped<ILivroAutorRepository, LivroAutorRepository>();
+            services.AddScoped<ILivroAutorService, LivroAutorService>();
+
             services.AddAutoMapper(typeof(Program));
         }
 

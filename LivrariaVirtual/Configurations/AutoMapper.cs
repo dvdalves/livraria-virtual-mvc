@@ -9,6 +9,9 @@ namespace LivrariaVirtual.Configurations
         public AutoMapper()
         {
             CreateMap<Livro, LivroViewModel>().ReverseMap();
-        }
+            CreateMap<LivroCategoria, LivroCategoriaViewModel>().ReverseMap();
+            CreateMap<LivroAvaliacao, LivroAvaliacao>().ReverseMap();
+            CreateMap<LivroAutor, LivroAutorViewModel>().ReverseMap();
+        }           
     }
 }

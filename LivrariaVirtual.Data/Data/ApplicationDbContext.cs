@@ -11,7 +11,9 @@ namespace LivrariaVirtual.Data.Data
         {
         }
 
-        public DbSet<Produto> Produtos { get; set; }
         public DbSet<Livro> Livros { get; set; }
+        public DbSet<LivroAutor> LivrosAutores { get; set; }
+        public DbSet<LivroAvaliacao> LivrosAvalicoes { get; set; }
+        public DbSet<LivroCategoria> LivrosCategorias { get; set; }
     }
 }

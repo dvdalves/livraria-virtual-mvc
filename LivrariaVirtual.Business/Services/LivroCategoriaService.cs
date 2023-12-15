@@ -2,7 +2,7 @@
 
 namespace LivrariaVirtual.Business.Services
 {
-    public class ProdutoService : IProdutoService
+    public class LivroCategoriaService : ILivroCategoriaService
     {
     }
 }
