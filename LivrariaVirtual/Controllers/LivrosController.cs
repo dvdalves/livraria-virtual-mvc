@@ -2,74 +2,73 @@
 using LivrariaVirtual.Business.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LivrariaVirtual.Controllers
+namespace LivrariaVirtual.Controllers;
+
+public class LivrosController : Controller
 {
-    public class LivrosController : Controller
+    private readonly ILivroService _livroService;
+
+    public LivrosController(ILivroService livroService)
     {
-        private readonly ILivroService _livroService;
+        _livroService = livroService;
+    }
 
-        public LivrosController(ILivroService livroService)
-        {
-            _livroService = livroService;
-        }
+    public async Task<IActionResult> Index()
+    {
+        return View(await _livroService.ObterTodos());
+    }
 
-        public async Task<IActionResult> Index()
-        {
-            return View(await _livroService.ObterTodos());
-        }
+    public IActionResult Create()
+    {
+        return View();
+    }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(LivroViewModel livroViewModel)
+    {
+        var resultado = await _livroService.Incluir(livroViewModel);
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LivroViewModel livroViewModel)
-        {
-            var resultado = await _livroService.Incluir(livroViewModel);
+        return RedirectToAction(nameof(Index));
+    }
 
-            return RedirectToAction(nameof(Index));
-        }
+    public async Task<IActionResult> Edit(Guid id)
+    {
 
-        public async Task<IActionResult> Edit(Guid id)
-        {
+        var resultado = await _livroService.RetornaPorId(id);
 
-            var resultado = await _livroService.RetornaPorId(id);
+        return View(resultado);
+    }
 
-            return View(resultado);
-        }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Guid id, LivroViewModel livroViewModel)
+    {
+        await _livroService.Alterar(livroViewModel);
+        return RedirectToAction(nameof(Index));
+    }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, LivroViewModel livroViewModel)
-        {
-            await _livroService.Alterar(livroViewModel);
-            return RedirectToAction(nameof(Index));
-        }
+    public async Task<IActionResult> Delete(Guid id)
+    {
 
-        public async Task<IActionResult> Delete(Guid id)
-        {
+        var livros = await _livroService.RetornaPorId(id);
 
-            var livros = await _livroService.RetornaPorId(id);
+        return View(livros);
+    }
 
-            return View(livros);
-        }
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(Guid id)
+    {
+        await _livroService.Excluir(id);
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            await _livroService.Excluir(id);
+        return RedirectToAction(nameof(Index));
+    }
 
-            return RedirectToAction(nameof(Index));
-        }
+    public async Task<IActionResult> Details(Guid id)
+    {
+        var livros = await _livroService.RetornaPorId(id);
 
-        public async Task<IActionResult> Details(Guid id)
-        {
-            var livros = await _livroService.RetornaPorId(id);
-
-            return View(livros);
-        }
+        return View(livros);
     }
 }
